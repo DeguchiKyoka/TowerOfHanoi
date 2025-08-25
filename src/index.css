@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* カスタムスタイル */
+.tower {
+  @apply relative bg-amber-100 rounded-lg border-2 border-amber-300;
+}
+
+.disk {
+  @apply absolute bg-gradient-to-r rounded-md cursor-pointer transition-all duration-300 hover:shadow-lg flex items-center justify-center text-white font-bold text-sm select-none;
+}
+
+.disk.dragging {
+  @apply opacity-50 shadow-xl;
+}
+
+.tower-base {
+  @apply absolute bottom-0 left-1/2 transform -translate-x-1/2 w-4/5 h-2 bg-amber-800 rounded;
+}
+
+.tower-pole {
+  @apply absolute bottom-2 left-1/2 transform -translate-x-1/2 w-2 h-full bg-amber-700 rounded-t;
+}
+
+/* アニメーション */
+@keyframes diskMove {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%); }
+}
+
+@keyframes diskBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes celebrate {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.1) rotate(-5deg); }
+  75% { transform: scale(1.1) rotate(5deg); }
+}
+
+.animate-disk-move {
+  animation: diskMove 0.5s ease-in-out;
+}
+
+.animate-disk-bounce {
+  animation: diskBounce 0.3s ease-in-out;
+}
+
+.animate-celebrate {
+  animation: celebrate 0.6s ease-in-out infinite;
+}
+
+/* ドラッグ時のカーソル */
+.drag-over {
+  cursor: grabbing !important;
+}
+
+/* 完成時のエフェクト */
+@keyframes confetti {
+  0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: #f0f;
+  animation: confetti 3s linear infinite;
+}
