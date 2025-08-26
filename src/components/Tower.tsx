@@ -50,7 +50,7 @@ export const Tower: React.FC<TowerProps> = ({
       
       {/* 円盤を表示 */}
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex flex-col-reverse items-center justify-center">
-        {tower.disks.map((disk, index) => (
+        {tower.disks.map((disk) => (
           <div
             key={disk.id}
             className="flex justify-center"
